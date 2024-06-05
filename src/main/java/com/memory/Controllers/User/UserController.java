@@ -16,6 +16,7 @@ public class UserController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Model.getInstance().getViewFactory().getUserMenuItems().addListener((observableVal, oldVal, newVal) ->
         {
+            // decide what will be in the center of the window
             if (Objects.requireNonNull(newVal) == UserMenuItems.GAME) {
                 user_parent.setCenter(Model.getInstance().getViewFactory().getGameModeView());
             } else {

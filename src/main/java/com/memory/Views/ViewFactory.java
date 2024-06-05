@@ -23,6 +23,7 @@ public class ViewFactory {
     public ObjectProperty<UserMenuItems> getUserMenuItems() {return userMenuItems;}
 
 
+    // Get Views Section
     public AnchorPane getGameModeView() {
         if (gameModeView == null) {
             try {
@@ -43,6 +44,12 @@ public class ViewFactory {
             }
         }
         return homeView;
+    }
+
+    // Show Views Section
+    public void showGameEasyView() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Game/GameEasy.fxml"));
+        createStage(loader);
     }
 
     public void showMenuView() {

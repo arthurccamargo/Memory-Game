@@ -16,10 +16,6 @@ public class UserMenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        addListeners();
-    }
-
-    public void addListeners() {
         home_btn.setOnAction(e -> onHome());
         logout_btn.setOnAction(e -> onLogout());
         game_btn.setOnAction(e -> onGame());

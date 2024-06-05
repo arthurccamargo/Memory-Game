@@ -17,12 +17,16 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // if button is clicked
         login_btn.setOnAction(e -> onLogin());
     }
 
     private void onLogin() {
+        // get stage
         Stage stage = (Stage) login_btn.getScene().getWindow();
+        // close stage the login window
         Model.getInstance().getViewFactory().closeStage(stage);
+        // show menu window
         Model.getInstance().getViewFactory().showMenuView();
     }
 }
