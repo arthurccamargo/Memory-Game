@@ -22,7 +22,11 @@ public class UserMenuController implements Initializable {
     }
 
     public void onHome() {
-        Model.getInstance().getViewFactory().getUserMenuItems().set(UserMenuItems.HOME);
+        if (Model.getInstance().getViewFactory().getUserMenuItems().get() == UserMenuItems.GAME_EASY) {
+           Model.getInstance().getViewFactory().showAlert();
+        } else {
+            Model.getInstance().getViewFactory().getUserMenuItems().set(UserMenuItems.HOME);
+        }
     }
 
     public void onGame() {Model.getInstance().getViewFactory().getUserMenuItems().set(UserMenuItems.GAME);}

@@ -1,14 +1,18 @@
 package com.memory.Views;
 
 import com.memory.Controllers.User.UserController;
+import com.memory.Models.Model;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class ViewFactory {
     private final ObjectProperty<UserMenuItems> userMenuItems;
@@ -88,5 +92,18 @@ public class ViewFactory {
 
     public void closeStage(Stage stage) {
         stage.close();
+    }
+
+    // Alert Method
+    public void showAlert() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Warning");
+        alert.setHeaderText(null);
+        alert.setContentText("If you change windows you will lose your game");
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if(result.isPresent() && result.get() == ButtonType.OK) {
+          Model.getInstance().getViewFactory().getUserMenuItems().set(UserMenuItems.HOME);
+         }
     }
 }
