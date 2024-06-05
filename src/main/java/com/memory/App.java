@@ -1,7 +1,12 @@
 package com.memory;
 
-public class App {
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
+import com.memory.Models.Model;
+import javafx.application.Application;
+import javafx.stage.Stage;
+
+public class App extends Application {
+    @Override
+    public void start(Stage stage) {
+        Model.getInstance().getViewFactory().showLoginView();
     }
 }
