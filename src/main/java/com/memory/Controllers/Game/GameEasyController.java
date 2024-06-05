@@ -1,5 +1,6 @@
 package com.memory.Controllers.Game;
 
+import com.memory.Models.Board;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,10 +13,13 @@ public class GameEasyController implements Initializable {
     public GridPane gridPane;
     public Label time_lbl;
     public Button[][] buttons;
+    public Board board;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.buttons = new Button[gridPane.getRowCount()][gridPane.getColumnCount()];
+        this.board = new Board(gridPane.getRowCount(), gridPane.getColumnCount());
+        board.createPieces();
         createButtons();
     }
 
@@ -29,6 +33,4 @@ public class GameEasyController implements Initializable {
             }
         }
     }
-
-
 }
