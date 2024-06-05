@@ -8,9 +8,12 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class ViewFactory {
     private final ObjectProperty<UserMenuItems> userMenuItems;
     private AnchorPane homeView;
+    private AnchorPane gameModeView;
 
     public ViewFactory() {
         this.userMenuItems = new SimpleObjectProperty<>();
@@ -18,6 +21,18 @@ public class ViewFactory {
 
 
     public ObjectProperty<UserMenuItems> getUserMenuItems() {return userMenuItems;}
+
+
+    public AnchorPane getGameModeView() {
+        if (gameModeView == null) {
+            try {
+                gameModeView = new FXMLLoader(getClass().getResource("/Fxml/Game/GameMode.fxml")).load();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+        return gameModeView;
+    }
 
     public AnchorPane getHomeView() {
         if(homeView == null) {

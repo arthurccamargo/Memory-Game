@@ -16,7 +16,9 @@ public class UserController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Model.getInstance().getViewFactory().getUserMenuItems().addListener((observableVal, oldVal, newVal) ->
         {
-            if (Objects.requireNonNull(newVal) == UserMenuItems.HOME) {
+            if (Objects.requireNonNull(newVal) == UserMenuItems.GAME) {
+                user_parent.setCenter(Model.getInstance().getViewFactory().getGameModeView());
+            } else {
                 user_parent.setCenter(Model.getInstance().getViewFactory().getHomeView());
             }
         });

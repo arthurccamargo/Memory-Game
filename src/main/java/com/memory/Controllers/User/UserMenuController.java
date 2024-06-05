@@ -22,12 +22,14 @@ public class UserMenuController implements Initializable {
     public void addListeners() {
         home_btn.setOnAction(e -> onHome());
         logout_btn.setOnAction(e -> onLogout());
-
+        game_btn.setOnAction(e -> onGame());
     }
 
     public void onHome() {
         Model.getInstance().getViewFactory().getUserMenuItems().set(UserMenuItems.HOME);
     }
+
+    public void onGame() {Model.getInstance().getViewFactory().getUserMenuItems().set(UserMenuItems.GAME);}
 
     public void onLogout() {
         Stage stage = (Stage) home_btn.getScene().getWindow();
