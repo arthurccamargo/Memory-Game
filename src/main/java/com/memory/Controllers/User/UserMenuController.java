@@ -22,18 +22,27 @@ public class UserMenuController implements Initializable {
     }
 
     public void onHome() {
+        // if you are in the easy game mode window and want to go to the home window
         if (Model.getInstance().getViewFactory().getUserMenuItems().get() == UserMenuItems.GAME_EASY) {
-           Model.getInstance().getViewFactory().showAlert();
+            // show alert
+           Model.getInstance().getViewFactory().showAlert(UserMenuItems.HOME);
         } else {
             Model.getInstance().getViewFactory().getUserMenuItems().set(UserMenuItems.HOME);
         }
     }
 
-    public void onGame() {Model.getInstance().getViewFactory().getUserMenuItems().set(UserMenuItems.GAME);}
+    public void onGame() {
+        // if you are in the easy game mode window and want to go to the game mode window
+        if (Model.getInstance().getViewFactory().getUserMenuItems().get() == UserMenuItems.GAME_EASY) {
+            Model.getInstance().getViewFactory().showAlert(UserMenuItems.GAME);
+        } else {
+            Model.getInstance().getViewFactory().getUserMenuItems().set(UserMenuItems.GAME);
+        }
+    }
 
     public void onLogout() {
-        Stage stage = (Stage) home_btn.getScene().getWindow();
-        Model.getInstance().getViewFactory().closeStage(stage);
-        Model.getInstance().getViewFactory().showLoginView();
+        // if you are anywhere and want to go out
+        Stage stage = (Stage) logout_btn.getScene().getWindow();
+        Model.getInstance().getViewFactory().showAlertLogout(stage);
     }
 }

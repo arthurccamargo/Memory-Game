@@ -95,7 +95,7 @@ public class ViewFactory {
     }
 
     // Alert Method
-    public void showAlert() {
+    public void showAlert(UserMenuItems item) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Warning");
         alert.setHeaderText(null);
@@ -103,7 +103,20 @@ public class ViewFactory {
         Optional<ButtonType> result = alert.showAndWait();
 
         if(result.isPresent() && result.get() == ButtonType.OK) {
-          Model.getInstance().getViewFactory().getUserMenuItems().set(UserMenuItems.HOME);
+            getUserMenuItems().set(item);
          }
+    }
+
+    public void showAlertLogout(Stage stage) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Warning");
+        alert.setHeaderText(null);
+        alert.setContentText("Do you want to logout of your account");
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if(result.isPresent() && result.get() == ButtonType.OK) {
+            closeStage(stage);
+            showLoginView();
+        }
     }
 }
