@@ -1,6 +1,7 @@
 package com.memory.Controllers.Game;
 
 import com.memory.Models.Model;
+import com.memory.Views.UserMenuItems;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -19,11 +20,6 @@ public class GameModeController implements Initializable {
     }
 
     private void onEasy() {
-        // get stage
-        Stage stage = (Stage) easy_btn.getScene().getWindow();
-        // close stage the game mode window
-        Model.getInstance().getViewFactory().closeStage(stage);
-        // show game easy window
-        Model.getInstance().getViewFactory().showGameEasyView();
+        Model.getInstance().getViewFactory().getUserMenuItems().set(UserMenuItems.GAME_EASY);
     }
 }

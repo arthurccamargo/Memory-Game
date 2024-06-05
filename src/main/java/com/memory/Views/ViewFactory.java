@@ -14,6 +14,7 @@ public class ViewFactory {
     private final ObjectProperty<UserMenuItems> userMenuItems;
     private AnchorPane homeView;
     private AnchorPane gameModeView;
+    private AnchorPane gameEasyView;
 
     public ViewFactory() {
         this.userMenuItems = new SimpleObjectProperty<>();
@@ -24,6 +25,17 @@ public class ViewFactory {
 
 
     // Get Views Section
+    public AnchorPane getGameEasyView() {
+        if (gameEasyView == null) {
+            try {
+                gameEasyView = new FXMLLoader(getClass().getResource("/Fxml/Game/GameEasy.fxml")).load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return gameEasyView;
+    }
+
     public AnchorPane getGameModeView() {
         if (gameModeView == null) {
             try {
@@ -47,11 +59,6 @@ public class ViewFactory {
     }
 
     // Show Views Section
-    public void showGameEasyView() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Game/GameEasy.fxml"));
-        createStage(loader);
-    }
-
     public void showMenuView() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/User/Menu.fxml"));
         UserController userController = new UserController();
