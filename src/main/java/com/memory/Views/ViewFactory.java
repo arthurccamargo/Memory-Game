@@ -11,6 +11,11 @@ public class ViewFactory {
         createStage(loader);
     }
 
+    public void showHomeView() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Home.fxml"));
+        createStage(loader);
+    }
+
     public void createStage(FXMLLoader loader) {
         Scene scene = null;
         try {
@@ -23,5 +28,9 @@ public class ViewFactory {
         stage.setTitle("Memory Game");
         stage.setResizable(false);
         stage.show();
+    }
+
+    public void closeStage(Stage stage) {
+        stage.close();
     }
 }
