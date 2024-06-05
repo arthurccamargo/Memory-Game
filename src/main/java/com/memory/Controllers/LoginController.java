@@ -23,6 +23,6 @@ public class LoginController implements Initializable {
     private void onLogin() {
         Stage stage = (Stage) login_btn.getScene().getWindow();
         Model.getInstance().getViewFactory().closeStage(stage);
-        Model.getInstance().getViewFactory().showHomeView();
+        Model.getInstance().getViewFactory().showMenuView();
     }
 }
