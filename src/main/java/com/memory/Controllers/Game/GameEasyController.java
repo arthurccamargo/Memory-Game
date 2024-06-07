@@ -19,7 +19,7 @@ public class GameEasyController implements Initializable {
     private Board board;
     private List<Color> colorList;
     private static final int DELAY = 1000; // ms
-    private boolean permission = true; // when comparison between two pieces is allowed - after delay
+    private boolean comparison_permission = true; // when comparison between two pieces is allowed - after delay
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -27,6 +27,7 @@ public class GameEasyController implements Initializable {
         this.board = new Board(gridPane.getRowCount(), gridPane.getColumnCount());
         this.active_buttons = new ArrayList<>();
         this.colorList = new ArrayList<>();
+
         board.createPieces();
         fillListColor();
         createButtons();
@@ -68,8 +69,8 @@ public class GameEasyController implements Initializable {
             setCor(button, i, j);
             addActiveButton(button);
         }
-        if(active_buttons.size() == 2 && permission) {
-            permission = false;
+        if(active_buttons.size() == 2 && comparison_permission) {
+           comparison_permission = false;
             waitComparison();
         }
     }
@@ -114,7 +115,7 @@ public class GameEasyController implements Initializable {
             active_buttons.forEach(button -> button.setDisable(false));
             active_buttons.forEach(button -> button.setStyle("-fx-background-color: gray"));
         }
-        permission = true;
+        comparison_permission = true;
         removeButtons();
     }
 

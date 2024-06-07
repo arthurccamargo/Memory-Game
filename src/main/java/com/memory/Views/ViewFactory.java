@@ -1,7 +1,6 @@
 package com.memory.Views;
 
 import com.memory.Controllers.User.UserController;
-import com.memory.Models.Model;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,13 +20,12 @@ public class ViewFactory {
     private AnchorPane gameModeView;
     private AnchorPane gameEasyView;
 
+
     public ViewFactory() {
         this.userMenuItems = new SimpleObjectProperty<>();
     }
 
-
     public ObjectProperty<UserMenuItems> getUserMenuItems() {return userMenuItems;}
-
 
     // Get Views Section
     public AnchorPane getGameEasyView() {
@@ -103,8 +102,17 @@ public class ViewFactory {
         Optional<ButtonType> result = alert.showAndWait();
 
         if(result.isPresent() && result.get() == ButtonType.OK) {
+            resetBoard();
             getUserMenuItems().set(item);
          }
+    }
+
+    public void resetBoard() {
+        GridPane grid = (GridPane) gameEasyView.getChildren().get(1);
+        for (int i = 0; i < (grid.getRowCount() * grid.getColumnCount()); i++) {
+            grid.getChildren().get(i).setStyle("-fx-background-color: gray");
+            grid.getChildren().get(i).setDisable(false);
+        }
     }
 
     public void showAlertLogout(Stage stage) {
