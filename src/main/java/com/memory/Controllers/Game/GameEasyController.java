@@ -27,7 +27,6 @@ public class GameEasyController implements Initializable {
         this.board = new Board(gridPane.getRowCount(), gridPane.getColumnCount());
         this.active_buttons = new ArrayList<>();
         this.colorList = new ArrayList<>();
-
         board.createPieces();
         fillListColor();
         createButtons();
@@ -45,7 +44,6 @@ public class GameEasyController implements Initializable {
             for (int j = 0; j < gridPane.getColumnCount(); j++) {
                 buttons[i][j] = new Button();
                 gridPane.add(buttons[i][j], j, i);
-                buttons[i][j].setId("b" + i + j + "_btn");
                 buttons[i][j].setMinWidth(117.6);
                 buttons[i][j].setMinHeight(68);
                 buttons[i][j].setText("?");
@@ -59,26 +57,30 @@ public class GameEasyController implements Initializable {
             for (int j = 0; j < gridPane.getColumnCount(); j++) {
                 int finalI = i;
                 int finalJ = j;
-                buttons[i][j].setOnAction(event -> onButtons(buttons[finalI][finalJ], finalI, finalJ));
+                buttons[i][j].setOnAction(event -> onButtons(buttons[finalI][finalJ]));
             }
         }
     }
 
-   private void onButtons(Button button, int i, int j) {
+    private void onButtons(Button button) {
         if (active_buttons.size() < 2) {
-            setCor(button, i, j);
+            setCor(button);
             addActiveButton(button);
         }
-        if(active_buttons.size() == 2 && comparison_permission) {
-           comparison_permission = false;
+        if (active_buttons.size() == 2 && comparison_permission) {
+            comparison_permission = false;
             waitComparison();
         }
     }
 
-    private void setCor(Button button, int i, int j) {
+    private void setCor(Button button) {
         int index;
         String color;
-        index = board.getPieces()[i][j].getIdPiece();
+
+        int row = rowButton(button);
+        int col = colButton(button);
+
+        index = board.getPieces()[row][col].getIdPiece();
         color = colorList.get(index).toString();
         button.setStyle("-fx-background-color:" + color);
     }
@@ -120,13 +122,31 @@ public class GameEasyController implements Initializable {
     }
 
     private int captureId(int index) {
-        // get the name string (button id) to know its position in the matrix
-        char second_char = active_buttons.get(index).getId().charAt(1);
-        char third_char = active_buttons.get(index).getId().charAt(2);
+        // get the button of active buttons
+        Button button = active_buttons.get(index);
 
-        int row = Integer.parseInt(String.valueOf(second_char));
-        int col = Integer.parseInt(String.valueOf(third_char));
+        int row = rowButton(button);
+        int col = colButton(button);
+
         // return piece id
         return board.getPieces()[row][col].getIdPiece();
+    }
+
+    // get the position button
+    private int rowButton(Button button) {
+        int row;
+        Iterator<Object> list = button.getProperties().values().iterator();
+
+        row = (int) list.next();
+        row = (int) list.next();
+        return row;
+    }
+
+    private int colButton(Button button) {
+        int col;
+        Iterator<Object> list = button.getProperties().values().iterator();
+
+        col = (int) list.next();
+        return col;
     }
 }
