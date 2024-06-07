@@ -14,11 +14,12 @@ import java.util.*;
 public class GameEasyController implements Initializable {
     public GridPane gridPane;
     public Label time_lbl;
-    public Button[][] buttons;
-    public List<Button> active_buttons;
-    public Board board;
-    public List<Color> colorList;
+    private Button[][] buttons;
+    private List<Button> active_buttons;
+    private Board board;
+    private List<Color> colorList;
     private static final int DELAY = 1000; // ms
+    private boolean permission = true; // when comparison between two pieces is allowed - after delay
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -32,13 +33,27 @@ public class GameEasyController implements Initializable {
         userAction();
     }
 
-    public void fillListColor() {
+    private void fillListColor() {
         for (Color color : Color.values()) {
             colorList.add(color);
         }
     }
 
-    public void userAction() {
+    private void createButtons() {
+        for (int i = 0; i < gridPane.getRowCount(); i++) {
+            for (int j = 0; j < gridPane.getColumnCount(); j++) {
+                buttons[i][j] = new Button();
+                gridPane.add(buttons[i][j], j, i);
+                buttons[i][j].setId("b" + i + j + "_btn");
+                buttons[i][j].setMinWidth(117.6);
+                buttons[i][j].setMinHeight(68);
+                buttons[i][j].setText("?");
+                buttons[i][j].setStyle("-fx-background-color: gray");
+            }
+        }
+    }
+
+    private void userAction() {
         for (int i = 0; i < gridPane.getRowCount(); i++) {
             for (int j = 0; j < gridPane.getColumnCount(); j++) {
                 int finalI = i;
@@ -48,15 +63,19 @@ public class GameEasyController implements Initializable {
         }
     }
 
-   public void onButtons(Button button, int i, int j) {
-        setCor(button, i, j);
-        addActiveButton(button);
-        if (active_buttons.size() > 1) {
+   private void onButtons(Button button, int i, int j) {
+        if (active_buttons.size() < 2) {
+            setCor(button, i, j);
+            addActiveButton(button);
+        }
+       System.out.println(active_buttons.size());
+        if(active_buttons.size() == 2 && permission) {
+            permission = false;
             waitComparison();
         }
     }
 
-    public void setCor(Button button, int i, int j) {
+    private void setCor(Button button, int i, int j) {
         int index;
         String color;
         index = board.getPieces()[i][j].getIdPiece();
@@ -64,29 +83,15 @@ public class GameEasyController implements Initializable {
         button.setStyle("-fx-background-color:" + color);
     }
 
-    public void addActiveButton(Button button) {
+    private void addActiveButton(Button button) {
         active_buttons.add(button);
     }
 
-    public void removeButtons() {
+    private void removeButtons() {
         active_buttons.clear();
     }
 
-    public void comparisonButtons() {
-        int piece1_id = captureId(0);
-        int piece2_id = captureId(1);
-        if (piece1_id == piece2_id) {
-            System.out.println("Sao iguais");
-            active_buttons.forEach(button -> button.setDisable(true));
-        } else {
-            System.out.println("diferentes");
-            active_buttons.forEach(button -> button.setDisable(false));
-            active_buttons.forEach(button -> button.setStyle("-fx-background-color: gray"));
-        }
-        removeButtons();
-    }
-
-    public void waitComparison() {
+    private void waitComparison() {
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
@@ -99,7 +104,20 @@ public class GameEasyController implements Initializable {
         }, DELAY);
     }
 
-    public int captureId(int index) {
+    private void comparisonButtons() {
+        int piece1_id = captureId(0);
+        int piece2_id = captureId(1);
+        if (piece1_id == piece2_id) {
+            active_buttons.forEach(button -> button.setDisable(true));
+        } else {
+            active_buttons.forEach(button -> button.setDisable(false));
+            active_buttons.forEach(button -> button.setStyle("-fx-background-color: gray"));
+        }
+        permission = true;
+        removeButtons();
+    }
+
+    private int captureId(int index) {
         // get the name string (button id) to know its position in the matrix
         char second_char = active_buttons.get(index).getId().charAt(1);
         char third_char = active_buttons.get(index).getId().charAt(2);
@@ -108,19 +126,5 @@ public class GameEasyController implements Initializable {
         int col = Integer.parseInt(String.valueOf(third_char));
         // return piece id
         return board.getPieces()[row][col].getIdPiece();
-    }
-
-    public void createButtons() {
-            for (int i = 0; i < gridPane.getRowCount(); i++) {
-                for (int j = 0; j < gridPane.getColumnCount(); j++) {
-                    buttons[i][j] = new Button();
-                    gridPane.add(buttons[i][j], j, i);
-                    buttons[i][j].setId("b" + i + j + "_btn");
-                    buttons[i][j].setMinWidth(117.6);
-                    buttons[i][j].setMinHeight(68);
-                    buttons[i][j].setText("?");
-                    buttons[i][j].setStyle("-fx-background-color: gray");
-                }
-            }
     }
 }
