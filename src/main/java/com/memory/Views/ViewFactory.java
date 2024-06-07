@@ -1,6 +1,7 @@
 package com.memory.Views;
 
 import com.memory.Controllers.User.UserController;
+import com.memory.Models.Model;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXMLLoader;
@@ -123,6 +124,8 @@ public class ViewFactory {
         Optional<ButtonType> result = alert.showAndWait();
 
         if(result.isPresent() && result.get() == ButtonType.OK) {
+            Model.getInstance().getViewFactory().getUserMenuItems().set(UserMenuItems.HOME);
+            resetBoard();
             closeStage(stage);
             showLoginView();
         }
