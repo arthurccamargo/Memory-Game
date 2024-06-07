@@ -68,7 +68,6 @@ public class GameEasyController implements Initializable {
             setCor(button, i, j);
             addActiveButton(button);
         }
-       System.out.println(active_buttons.size());
         if(active_buttons.size() == 2 && permission) {
             permission = false;
             waitComparison();
@@ -84,7 +83,9 @@ public class GameEasyController implements Initializable {
     }
 
     private void addActiveButton(Button button) {
-        active_buttons.add(button);
+        if (active_buttons.isEmpty() || button != active_buttons.get(0)) {
+            active_buttons.add(button);
+        }
     }
 
     private void removeButtons() {
