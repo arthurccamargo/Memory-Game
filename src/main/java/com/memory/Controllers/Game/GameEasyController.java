@@ -1,6 +1,7 @@
 package com.memory.Controllers.Game;
 
 import com.memory.Models.Board;
+import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,7 +18,7 @@ public class GameEasyController implements Initializable {
     public List<Button> active_buttons;
     public Board board;
     public List<Color> colorList;
-
+    private static final int DELAY = 1000; // ms
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -47,20 +48,12 @@ public class GameEasyController implements Initializable {
         }
     }
 
-    public void onButtons(Button button, int i, int j) {
+   public void onButtons(Button button, int i, int j) {
         setCor(button, i, j);
         addActiveButton(button);
         if (active_buttons.size() > 1) {
-            comparisonButtons();
+            waitComparison();
         }
-    }
-
-    public void addActiveButton(Button button) {
-        active_buttons.add(button);
-    }
-
-    public void removeButtons() {
-        active_buttons.clear();
     }
 
     public void setCor(Button button, int i, int j) {
@@ -71,10 +64,17 @@ public class GameEasyController implements Initializable {
         button.setStyle("-fx-background-color:" + color);
     }
 
-    public void comparisonButtons() {
-        int piece1_id = capturaId(0);
-        int piece2_id = capturaId(1);
+    public void addActiveButton(Button button) {
+        active_buttons.add(button);
+    }
 
+    public void removeButtons() {
+        active_buttons.clear();
+    }
+
+    public void comparisonButtons() {
+        int piece1_id = captureId(0);
+        int piece2_id = captureId(1);
         if (piece1_id == piece2_id) {
             System.out.println("Sao iguais");
             active_buttons.forEach(button -> button.setDisable(true));
@@ -86,7 +86,20 @@ public class GameEasyController implements Initializable {
         removeButtons();
     }
 
-    public int capturaId(int index) {
+    public void waitComparison() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Platform.runLater(() -> {
+                    timer.cancel();
+                    comparisonButtons();
+                });
+            }
+        }, DELAY);
+    }
+
+    public int captureId(int index) {
         // get the name string (button id) to know its position in the matrix
         char second_char = active_buttons.get(index).getId().charAt(1);
         char third_char = active_buttons.get(index).getId().charAt(2);
