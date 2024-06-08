@@ -15,7 +15,6 @@ public class GameTimer {
         timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> incrementLabel(label)));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.playFromStart();
-
     }
 
     public void incrementLabel(Label label) {

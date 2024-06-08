@@ -25,4 +25,5 @@
     </GridPane>
     <Text layoutX="230.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time" />
     <Label fx:id="time_lbl" layoutX="372.0" layoutY="111.0" text="00:00" />
+   <Label fx:id="success_lbl" layoutX="511.0" layoutY="111.0" text=" " />
 </AnchorPane>
