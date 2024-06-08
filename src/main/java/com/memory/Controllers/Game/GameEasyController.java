@@ -1,6 +1,7 @@
 package com.memory.Controllers.Game;
 
 import com.memory.Models.Board;
+import com.memory.Models.Model;
 import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -31,6 +32,7 @@ public class GameEasyController implements Initializable {
         fillListColor();
         createButtons();
         userAction();
+        starTimer();
     }
 
     private void fillListColor() {
@@ -96,12 +98,12 @@ public class GameEasyController implements Initializable {
     }
 
     private void waitComparison() {
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
+        Timer timerWait = new Timer();
+        timerWait.schedule(new TimerTask() {
             @Override
             public void run() {
                 Platform.runLater(() -> {
-                    timer.cancel();
+                    timerWait.cancel();
                     comparisonButtons();
                 });
             }
@@ -148,5 +150,9 @@ public class GameEasyController implements Initializable {
 
         col = (int) list.next();
         return col;
+    }
+
+    private void starTimer() {
+        Model.getInstance().getGameTimer().start(time_lbl);
     }
 }
