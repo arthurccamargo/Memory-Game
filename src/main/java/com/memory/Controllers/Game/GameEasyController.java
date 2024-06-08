@@ -1,8 +1,6 @@
 package com.memory.Controllers.Game;
 
-import com.memory.Models.Board;
 import com.memory.Models.Model;
-import com.memory.Views.UserMenuItems;
 import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -19,7 +17,6 @@ public class GameEasyController implements Initializable {
     public Label success_lbl;
     private Button[][] buttons;
     private List<Button> active_buttons;
-    private Board board;
     private List<Color> colorList;
     private static final int DELAY = 1000; // ms
     private boolean comparison_permission = true; // when comparison between two pieces is allowed - after delay
@@ -28,10 +25,10 @@ public class GameEasyController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.buttons = new Button[gridPane.getRowCount()][gridPane.getColumnCount()];
-        this.board = new Board(gridPane.getRowCount(), gridPane.getColumnCount());
         this.active_buttons = new ArrayList<>();
         this.colorList = new ArrayList<>();
-        board.createPieces();
+        Model.getInstance().getBoard().createPieces();
+        Model.getInstance().getBoard().randomPieces();
         setTextSuccess();
         fillListColor();
         createButtons();
@@ -88,7 +85,7 @@ public class GameEasyController implements Initializable {
         String color;
         int row = rowButton(button);
         int col = colButton(button);
-        index = board.getPieces()[row][col].getIdPiece();
+        index = Model.getInstance().getBoard().getPieces()[row][col].getIdPiece();
         color = colorList.get(index).toString();
         button.setStyle("-fx-background-color:" + color);
     }
@@ -140,7 +137,7 @@ public class GameEasyController implements Initializable {
         int row = rowButton(button);
         int col = colButton(button);
         // return piece id
-        return board.getPieces()[row][col].getIdPiece();
+        return Model.getInstance().getBoard().getPieces()[row][col].getIdPiece();
     }
 
     // get the position button

@@ -109,6 +109,9 @@ public class ViewFactory {
     }
 
     public void resetBoard() {
+        // random pieces
+        Model.getInstance().getBoard().randomPieces();
+        // reset color
         GridPane grid = (GridPane) gameEasyView.getChildren().get(1);
         for (int i = 0; i < (grid.getRowCount() * grid.getColumnCount()); i++) {
             grid.getChildren().get(i).setStyle("-fx-background-color: gray");

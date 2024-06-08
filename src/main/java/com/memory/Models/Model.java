@@ -6,8 +6,11 @@ public class Model {
     private static Model model;
     private final ViewFactory viewFactory;
     private final GameTimer timer;
+    private final Board board;
+
 
     private Model() {
+        this.board = new Board(4, 4);
         this.viewFactory = new ViewFactory();
         this.timer = new GameTimer();
     }
@@ -21,6 +24,7 @@ public class Model {
 
     public ViewFactory getViewFactory() {return viewFactory;}
 
-    public GameTimer getGameTimer() {return timer;
-    }
+    public GameTimer getGameTimer() {return timer;}
+
+    public Board getBoard() {return board;}
 }
