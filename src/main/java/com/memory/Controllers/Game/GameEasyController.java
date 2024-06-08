@@ -2,6 +2,7 @@ package com.memory.Controllers.Game;
 
 import com.memory.Models.Board;
 import com.memory.Models.Model;
+import com.memory.Views.UserMenuItems;
 import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -122,6 +123,9 @@ public class GameEasyController implements Initializable {
             active_buttons.forEach(button -> button.setDisable(true));
             success_count++;
             success_lbl.setText(success_count + "/" + (gridPane.getRowCount() * gridPane.getColumnCount())/2);
+            if (success_count == (gridPane.getRowCount() * gridPane.getColumnCount())/2) {
+                Model.getInstance().getViewFactory().showAlertWinner();
+            }
         } else {
             active_buttons.forEach(button -> button.setDisable(false));
             active_buttons.forEach(button -> button.setStyle("-fx-background-color: gray"));
