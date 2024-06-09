@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -117,6 +118,17 @@ public class ViewFactory {
             grid.getChildren().get(i).setStyle("-fx-background-color: gray");
             grid.getChildren().get(i).setDisable(false);
         }
+        // stop time
+        Model.getInstance().getGameTimer().stop();
+        // reset labels in GameEasy
+        Label time_lbl = (Label) gameEasyView.getChildren().get(3);
+        time_lbl.setText("00:00");
+        Model.getInstance().getGameTimer().setMinutes(0);
+        Model.getInstance().getGameTimer().setSeconds(0);
+        Label success_lbl = (Label) gameEasyView.getChildren().get(4);
+        success_lbl.setText("0/" + (grid.getRowCount() * grid.getColumnCount())/2);
+        Label attempts_lbl = (Label) gameEasyView.getChildren().get(6);
+        attempts_lbl.setText("0");
     }
 
     public void showAlertLogout(Stage stage) {
