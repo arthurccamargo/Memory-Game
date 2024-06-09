@@ -33,4 +33,13 @@ public class GameTimer {
     public void stop() {
         timeline.stop();
     }
+
+    public void setMinutes(int minutes) {
+        this.minutes = minutes;
+    }
+
+    public void setSeconds(int seconds) {
+        this.seconds = seconds;
+    }
 }
+

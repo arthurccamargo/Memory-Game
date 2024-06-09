@@ -22,6 +22,7 @@ public class GameEasyController implements Initializable {
     private boolean comparison_permission = true; // when comparison between two pieces is allowed - after delay
     private int success_count = 0;
     private int attempts =0;
+    private int flag_timer = 0;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -34,7 +35,6 @@ public class GameEasyController implements Initializable {
         fillListColor();
         createButtons();
         userAction();
-        starTimer();
     }
 
     public void setTextSuccess() {
@@ -71,6 +71,11 @@ public class GameEasyController implements Initializable {
     }
 
     private void onButtons(Button button) {
+        // the game is starting
+        if (flag_timer == 0) {
+            starTimer();
+            flag_timer=1;
+        }
         if (active_buttons.size() < 2) {
             setCor(button);
             addActiveButton(button);
@@ -126,8 +131,9 @@ public class GameEasyController implements Initializable {
             active_buttons.forEach(button -> button.setDisable(true));
             success_count++;
             success_lbl.setText(success_count + "/" + (gridPane.getRowCount() * gridPane.getColumnCount())/2);
+            // player win
             if (success_count == (gridPane.getRowCount() * gridPane.getColumnCount())/2) {
-                Model.getInstance().getViewFactory().showAlertWinner();
+                winner();
             }
         } else {
             active_buttons.forEach(button -> button.setDisable(false));
@@ -144,6 +150,23 @@ public class GameEasyController implements Initializable {
         int col = colButton(button);
         // return piece id
         return Model.getInstance().getBoard().getPieces()[row][col].getIdPiece();
+    }
+
+    private void winner() {
+        // show alert winner
+        Model.getInstance().getViewFactory().showAlertWinner();
+        // stop time
+        Model.getInstance().getGameTimer().stop();
+        // reset labels
+        time_lbl.setText("00:00");
+        Model.getInstance().getGameTimer().setMinutes(0);
+        Model.getInstance().getGameTimer().setSeconds(0);
+        attempts=0;
+        attempts_lbl.setText("0");
+        success_count=0;
+        setTextSuccess();
+        // flag_timer = 0 to start timer at the beginning of the game
+        flag_timer=0;
     }
 
     // get the position button
