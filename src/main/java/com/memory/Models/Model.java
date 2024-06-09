@@ -8,12 +8,14 @@ public class Model {
     private final GameTimer timer;
     private final Board board;
     private final User user;
+    private int startGame;
 
     private Model() {
         this.board = new Board(4, 4);
         this.viewFactory = new ViewFactory();
         this.timer = new GameTimer();
         this.user = new User();
+        this.startGame = 0;
     }
 
     public static synchronized Model getInstance() {
@@ -30,4 +32,10 @@ public class Model {
     public Board getBoard() {return board;}
 
     public User getUser() {return user;}
+
+    public int getStartGame() {return startGame;}
+
+    public void setStartGame(int startGame) {
+        this.startGame = startGame;
+    }
 }

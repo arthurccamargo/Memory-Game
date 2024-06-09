@@ -22,7 +22,6 @@ public class GameEasyController implements Initializable {
     private boolean comparison_permission = true; // when comparison between two pieces is allowed - after delay
     private int success_count = 0;
     private int attempts =0;
-    private int flag_timer = 0;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -72,9 +71,14 @@ public class GameEasyController implements Initializable {
 
     private void onButtons(Button button) {
         // the game is starting
-        if (flag_timer == 0) {
-            starTimer();
-            flag_timer=1;
+        if (Model.getInstance().getStartGame() == 0) {
+            // start Timer
+            Model.getInstance().getGameTimer().start(time_lbl);
+            // set startGame = 1;
+            Model.getInstance().setStartGame(1);
+            // reset variables to labels
+            attempts=0;
+            success_count=0;
         }
         if (active_buttons.size() < 2) {
             setCor(button);
@@ -165,8 +169,8 @@ public class GameEasyController implements Initializable {
         attempts_lbl.setText("0");
         success_count=0;
         setTextSuccess();
-        // flag_timer = 0 to start timer at the beginning of the game
-        flag_timer=0;
+        // starGame = 0 to start timer at the beginning of the game
+        Model.getInstance().setStartGame(0);
     }
 
     // get the position button
@@ -183,9 +187,5 @@ public class GameEasyController implements Initializable {
         Iterator<Object> list = button.getProperties().values().iterator();
         col = (int) list.next();
         return col;
-    }
-
-    private void starTimer() {
-        Model.getInstance().getGameTimer().start(time_lbl);
     }
 }

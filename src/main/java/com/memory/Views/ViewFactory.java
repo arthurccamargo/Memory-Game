@@ -110,6 +110,8 @@ public class ViewFactory {
     }
 
     public void resetBoard() {
+        // starGame = 0 to reset variables and start timer
+        Model.getInstance().setStartGame(0);
         // random pieces
         Model.getInstance().getBoard().randomPieces();
         // reset color
