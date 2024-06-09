@@ -104,12 +104,12 @@ public class ViewFactory {
         Optional<ButtonType> result = alert.showAndWait();
 
         if(result.isPresent() && result.get() == ButtonType.OK) {
-            resetBoard();
+            resetGameEasy();
             getUserMenuItems().set(item);
          }
     }
 
-    public void resetBoard() {
+    public void resetGameEasy() {
         // starGame = 0 to reset variables and start timer
         Model.getInstance().setStartGame(0);
         // random pieces
@@ -142,7 +142,7 @@ public class ViewFactory {
 
         if(result.isPresent() && result.get() == ButtonType.OK) {
             Model.getInstance().getViewFactory().getUserMenuItems().set(UserMenuItems.HOME);
-            resetBoard();
+            resetGameEasy();
             closeStage(stage);
             showLoginView();
         }
@@ -155,10 +155,9 @@ public class ViewFactory {
         alert.setContentText("Winner, do you want to play again?");
         Optional<ButtonType> result = alert.showAndWait();
 
-        if(result.isPresent() && result.get() == ButtonType.OK) {
-            resetBoard();
-        } else {
+        if(result.isPresent() && result.get() == ButtonType.CANCEL) {
             Model.getInstance().getViewFactory().getUserMenuItems().set(UserMenuItems.HOME);
         }
+        resetGameEasy();
     }
 }

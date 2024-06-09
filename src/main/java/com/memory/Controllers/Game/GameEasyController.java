@@ -157,10 +157,10 @@ public class GameEasyController implements Initializable {
     }
 
     private void winner() {
-        // show alert winner
-        Model.getInstance().getViewFactory().showAlertWinner();
         // stop time
         Model.getInstance().getGameTimer().stop();
+        // show alert winner
+        Model.getInstance().getViewFactory().showAlertWinner();
         // reset labels
         time_lbl.setText("00:00");
         Model.getInstance().getGameTimer().setMinutes(0);
