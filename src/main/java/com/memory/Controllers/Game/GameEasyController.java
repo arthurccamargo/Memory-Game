@@ -10,17 +10,18 @@ import javafx.scene.layout.GridPane;
 import java.net.URL;
 import java.util.*;
 
-
 public class GameEasyController implements Initializable {
     public GridPane gridPane;
     public Label time_lbl;
     public Label success_lbl;
+    public Label attempts_lbl;
     private Button[][] buttons;
     private List<Button> active_buttons;
     private List<Color> colorList;
     private static final int DELAY = 1000; // ms
     private boolean comparison_permission = true; // when comparison between two pieces is allowed - after delay
     private int success_count = 0;
+    private int attempts =0;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -114,6 +115,11 @@ public class GameEasyController implements Initializable {
     }
 
     private void comparisonButtons() {
+        // set user attempts
+        attempts++;
+        Model.getInstance().getUser().setAttempts(attempts);
+        attempts_lbl.setText(String.valueOf(attempts));
+
         int piece1_id = captureId(0);
         int piece2_id = captureId(1);
         if (piece1_id == piece2_id) {

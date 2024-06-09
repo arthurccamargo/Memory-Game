@@ -7,12 +7,13 @@ public class Model {
     private final ViewFactory viewFactory;
     private final GameTimer timer;
     private final Board board;
-
+    private final User user;
 
     private Model() {
         this.board = new Board(4, 4);
         this.viewFactory = new ViewFactory();
         this.timer = new GameTimer();
+        this.user = new User();
     }
 
     public static synchronized Model getInstance() {
@@ -27,4 +28,6 @@ public class Model {
     public GameTimer getGameTimer() {return timer;}
 
     public Board getBoard() {return board;}
+
+    public User getUser() {return user;}
 }

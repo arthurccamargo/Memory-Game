@@ -7,8 +7,8 @@ import java.util.Random;
 public class Board {
     private final int rows;
     private final int columns;
-    private Piece[][] pieces;
-    private List<Integer> pairPieces = new ArrayList<>();
+    private final Piece[][] pieces;
+    private final List<Integer> pairPieces = new ArrayList<>();
 
     public Board(int rows, int columns) {
         this.rows = rows;
@@ -17,7 +17,6 @@ public class Board {
     }
 
     public Piece[][] getPieces() {return pieces;}
-
     public void createPieces() {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
@@ -54,7 +53,6 @@ public class Board {
                         flag = 1;
                         // set id piece
                         pieces[i][j].setIdPiece(random);
-                        System.out.println(pieces[i][j].getIdPiece() + ", ");
                     }
                     cont = 0;
                 }
