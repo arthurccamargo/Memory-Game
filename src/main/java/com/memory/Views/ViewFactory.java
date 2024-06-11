@@ -76,6 +76,11 @@ public class ViewFactory {
         createStage(loader);
     }
 
+    public void showCreateUserView() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/CreateUser.fxml"));
+        createStage(loader);
+    }
+
     // Utility Methods
     public void createStage(FXMLLoader loader) {
         Scene scene = null;

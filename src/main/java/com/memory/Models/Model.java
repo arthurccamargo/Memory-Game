@@ -47,6 +47,8 @@ public class Model {
         this.startGame = startGame;
     }
 
+    public DatabaseDriver getDatabaseDriver() {return databaseDriver;}
+
     public boolean getUserLoginSuccessFlag() {return userLoginSuccessFlag;}
 
     public void setUserLoginSuccessFlag(boolean userLoginSuccessFlag) {

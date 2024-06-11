@@ -1,6 +1,7 @@
 package com.memory.Models;
 
 import java.sql.*;
+import java.time.LocalDate;
 
 public class DatabaseDriver {
     private Connection connection;
@@ -30,5 +31,16 @@ public class DatabaseDriver {
         }
     }
 
+    public void createUser(String username, String password, LocalDate date) {
+        Statement statement;
+        try {
+            statement = this.connection.createStatement();
+            statement.executeUpdate("INSERT INTO " +
+                    "user (user_name, user_password, entry_date)" +
+                    "VALUES ('"+username+"' , '"+password+"', '"+date.toString()+"');");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
 

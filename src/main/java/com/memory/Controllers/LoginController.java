@@ -16,11 +16,13 @@ public class LoginController implements Initializable {
     public TextField username_fld;
     public Button login_btn;
     public Label error_lbl;
+    public Button createUser_btn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // if button is clicked
         login_btn.setOnAction(e -> onLogin());
+        createUser_btn.setOnAction(e -> onCreateUser());
     }
 
     private void onLogin() {
@@ -39,5 +41,14 @@ public class LoginController implements Initializable {
         }
         username_fld.setText("");
         password_fld.setText("");
+    }
+
+    private void onCreateUser() {
+        // get stage
+        Stage stage = (Stage) createUser_btn.getScene().getWindow();
+        // close stage the login window
+        Model.getInstance().getViewFactory().closeStage(stage);
+        // show create user window
+        Model.getInstance().getViewFactory().showCreateUserView();
     }
 }
