@@ -110,27 +110,32 @@ public class ViewFactory {
     }
 
     public void resetGameEasy() {
-        // starGame = 0 to reset variables and start timer
-        Model.getInstance().setStartGame(0);
-        // random pieces
-        Model.getInstance().getBoard().randomPieces();
-        // reset color
-        GridPane grid = (GridPane) gameEasyView.getChildren().get(1);
-        for (int i = 0; i < (grid.getRowCount() * grid.getColumnCount()); i++) {
-            grid.getChildren().get(i).setStyle("-fx-background-color: gray");
-            grid.getChildren().get(i).setDisable(false);
+        // Can not stop null timeline
+        if (Model.getInstance().getGameTimer().getTimeline() != null) {
+            // stop time
+            Model.getInstance().getGameTimer().stop();
         }
-        // stop time
-        Model.getInstance().getGameTimer().stop();
-        // reset labels in GameEasy
-        Label time_lbl = (Label) gameEasyView.getChildren().get(3);
-        time_lbl.setText("00:00");
-        Model.getInstance().getGameTimer().setMinutes(0);
-        Model.getInstance().getGameTimer().setSeconds(0);
-        Label success_lbl = (Label) gameEasyView.getChildren().get(4);
-        success_lbl.setText("0/" + (grid.getRowCount() * grid.getColumnCount())/2);
-        Label attempts_lbl = (Label) gameEasyView.getChildren().get(6);
-        attempts_lbl.setText("0");
+        if (gameEasyView != null) {
+            // starGame = 0 to reset variables and start timer
+            Model.getInstance().setStartGame(0);
+            // random pieces
+            Model.getInstance().getBoard().randomPieces();
+            // reset color
+            GridPane grid = (GridPane) gameEasyView.getChildren().get(1);
+            for (int i = 0; i < (grid.getRowCount() * grid.getColumnCount()); i++) {
+                grid.getChildren().get(i).setStyle("-fx-background-color: gray");
+                grid.getChildren().get(i).setDisable(false);
+            }
+            // reset labels in GameEasy
+            Label time_lbl = (Label) gameEasyView.getChildren().get(3);
+            time_lbl.setText("00:00");
+            Model.getInstance().getGameTimer().setMinutes(0);
+            Model.getInstance().getGameTimer().setSeconds(0);
+            Label success_lbl = (Label) gameEasyView.getChildren().get(4);
+            success_lbl.setText("0/" + (grid.getRowCount() * grid.getColumnCount())/2);
+            Label attempts_lbl = (Label) gameEasyView.getChildren().get(6);
+            attempts_lbl.setText("0");
+        }
     }
 
     public void showAlertLogout(Stage stage) {
