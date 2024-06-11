@@ -2,6 +2,9 @@ package com.memory.Models;
 
 import com.memory.Views.ViewFactory;
 
+import java.sql.ResultSet;
+import java.time.LocalDate;
+
 public class Model {
     private static Model model;
     private final ViewFactory viewFactory;
@@ -9,6 +12,9 @@ public class Model {
     private final Board board;
     private final User user;
     private int startGame;
+    private final DatabaseDriver databaseDriver;
+    private boolean userLoginSuccessFlag;
+
 
     private Model() {
         this.board = new Board(4, 4);
@@ -16,6 +22,8 @@ public class Model {
         this.timer = new GameTimer();
         this.user = new User();
         this.startGame = 0;
+        this.databaseDriver = new DatabaseDriver();
+        this.userLoginSuccessFlag = false;
     }
 
     public static synchronized Model getInstance() {
@@ -37,5 +45,28 @@ public class Model {
 
     public void setStartGame(int startGame) {
         this.startGame = startGame;
+    }
+
+    public boolean getUserLoginSuccessFlag() {return userLoginSuccessFlag;}
+
+    public void setUserLoginSuccessFlag(boolean userLoginSuccessFlag) {
+        this.userLoginSuccessFlag = userLoginSuccessFlag;
+    }
+
+    public void evaluateUserCred(String username, String password) {
+        ResultSet resultSet = databaseDriver.getUserData(username, password);
+        try {
+            if (resultSet.isBeforeFirst()) {
+                while (resultSet.next()) {
+                    this.user.setName(resultSet.getString("user_name"));
+                    String[] dateParts = resultSet.getString("entry_date").split("-");
+                    LocalDate date = LocalDate.of(Integer.parseInt(dateParts[0]), Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[2]));
+                    this.user.setEntryDate(date);
+                    this.userLoginSuccessFlag = true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

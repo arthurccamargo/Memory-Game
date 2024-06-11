@@ -1,7 +1,6 @@
 package com.memory.Controllers;
 
 import com.memory.Models.Model;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -25,9 +24,17 @@ public class LoginController implements Initializable {
     private void onLogin() {
         // get stage
         Stage stage = (Stage) login_btn.getScene().getWindow();
-        // close stage the login window
-        Model.getInstance().getViewFactory().closeStage(stage);
-        // show menu window
-        Model.getInstance().getViewFactory().showMenuView();
+        // evaluate User Login Credentials
+        Model.getInstance().evaluateUserCred(username_fld.getText(), password_fld.getText());
+        if (Model.getInstance().getUserLoginSuccessFlag()) {
+            // show menu window
+            Model.getInstance().getViewFactory().showMenuView();
+            // close stage the login window
+            Model.getInstance().getViewFactory().closeStage(stage);
+            Model.getInstance().setUserLoginSuccessFlag(false);
+
+        }
+        username_fld.setText("");
+        password_fld.setText("");
     }
 }
