@@ -21,7 +21,21 @@ public class DatabaseDriver {
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
+            resultSet = preparedStatement.executeQuery();
+            return resultSet;
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public ResultSet getUserExistsData(String username) {
+        ResultSet resultSet;
+        try {
+            String sql = "SELECT * FROM user WHERE user_name= ? ";
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            preparedStatement.setString(1, username);
             resultSet = preparedStatement.executeQuery();
             return resultSet;
 

@@ -17,36 +17,44 @@ public class CreateUserController implements Initializable {
     public PasswordField createUserPassword_fld;
     public Button createNewUser_btn;
     public Label error_lbl;
+    public Button back_btn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         createNewUser_btn.setOnAction(e -> onCreateNewUser());
+        back_btn.setOnAction(e -> onBack());
     }
 
     private void onCreateNewUser() {
-        createUserAccount();
-        // get stage
-        Stage stage = (Stage) createNewUser_btn.getScene().getWindow();
-        // close stage the create user window
-        Model.getInstance().getViewFactory().closeStage(stage);
-        // show login window
-        Model.getInstance().getViewFactory().showLoginView();
-    }
-
-    private void createUserAccount() {
         String username = createUserName_fld.getText();
         String password = createUserPassword_fld.getText();
         // If the user already exists, it is not possible to create user
-        if (!Model.getInstance().userExists(username, password)) {
+        if (!Model.getInstance().userExists(username)) {
+            // create user
             Model.getInstance().getDatabaseDriver().createUser(username, password, LocalDate.now());
+            // get stage
+            Stage stage = (Stage) createNewUser_btn.getScene().getWindow();
+            // close stage the create user window
+            Model.getInstance().getViewFactory().closeStage(stage);
+            // show login window
+            Model.getInstance().getViewFactory().showLoginView();
         } else {
             error_lbl.setText("The username already exists");
         }
         emptyFields();
     }
 
+
     private void emptyFields() {
         createUserName_fld.setText("");
         createUserPassword_fld.setText("");
+    }
+
+    private void onBack() {
+        // get stage
+        Stage stage = (Stage) back_btn.getScene().getWindow();
+        // close stage the create user window
+        Model.getInstance().getViewFactory().closeStage(stage);
+        Model.getInstance().getViewFactory().showLoginView();
     }
 }

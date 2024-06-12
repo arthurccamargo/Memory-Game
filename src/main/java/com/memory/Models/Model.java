@@ -73,8 +73,8 @@ public class Model {
         }
     }
 
-    public boolean userExists(String username, String password) {
-        ResultSet resultSet = databaseDriver.getUserData(username, password);
+    public boolean userExists(String username) {
+        ResultSet resultSet = databaseDriver.getUserExistsData(username);
         try {
             return resultSet.isBeforeFirst();
         } catch (Exception e) {
