@@ -4,23 +4,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.memory.Controllers.User.HomeController">
-   <Text layoutX="370.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Easy mode"/>
-   <Text layoutX="360.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Medium mode"/>
-   <Text layoutX="369.0" layoutY="371.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hard mode"/>
-   <Text layoutX="199.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Highest score"/>
-   <Text layoutX="199.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Highest score"/>
-   <Text layoutX="199.0" layoutY="407.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Highest score"/>
-   <Text layoutX="199.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Best time"/>
-   <Text layoutX="199.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Best time"
-         wrappingWidth="49.18359375"/>
-   <Text layoutX="199.0" layoutY="442.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Best time"/>
-   <Label fx:id="hScoreEasy_lbl" layoutX="385.0" layoutY="139.0" text="Label"/>
-   <Label fx:id="bTimeEasy_lbl" layoutX="385.0" layoutY="175.0" text="Label"/>
-   <Label fx:id="hScoreMedium_lbl" layoutX="385.0" layoutY="259.0" text="Label"/>
-   <Label fx:id="bTimeMedium_lbl" layoutX="386.0" layoutY="292.0" text="Label"/>
-   <Label fx:id="hScoreHard_lbl" layoutX="385.0" layoutY="394.0" text="Label"/>
-   <Label fx:id="bTimeHard_lbl" layoutX="385.0" layoutY="429.0" text="Label"/>
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.memory.Controllers.User.HomeController">
+   <Text layoutX="370.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Easy mode" />
+   <Text layoutX="360.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Medium mode" />
+   <Text layoutX="369.0" layoutY="371.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hard mode" />
+   <Text layoutX="199.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Highest score" />
+   <Text layoutX="199.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Highest score" />
+   <Text layoutX="199.0" layoutY="407.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Highest score" />
+   <Text layoutX="199.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Best time" />
+   <Text layoutX="199.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Best time" wrappingWidth="49.18359375" />
+   <Text layoutX="199.0" layoutY="442.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Best time" />
+   <Label fx:id="hScoreEasy_lbl" layoutX="385.0" layoutY="139.0" text="Label" />
+   <Label fx:id="bTimeEasy_lbl" layoutX="385.0" layoutY="175.0" text="Label" />
+   <Label fx:id="hScoreMedium_lbl" layoutX="385.0" layoutY="259.0" text="Label" />
+   <Label fx:id="bTimeMedium_lbl" layoutX="386.0" layoutY="292.0" text="Label" />
+   <Label fx:id="hScoreHard_lbl" layoutX="385.0" layoutY="394.0" text="Label" />
+   <Label fx:id="bTimeHard_lbl" layoutX="385.0" layoutY="429.0" text="Label" />
+   <Label fx:id="username_lbl" layoutX="56.0" layoutY="53.0" />
 </AnchorPane>

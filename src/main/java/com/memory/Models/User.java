@@ -21,12 +21,10 @@ public class User {
         this.attempts = attempts;
     }
 
+    public String getName() {return name;}
+
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public void setEntryDate(LocalDate entryDate) {
