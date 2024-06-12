@@ -3,6 +3,8 @@ package com.memory.Controllers;
 import com.memory.Models.Model;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -12,8 +14,9 @@ import java.util.ResourceBundle;
 
 public class CreateUserController implements Initializable {
     public TextField createUserName_fld;
-    public TextField createUserPassword_fld;
+    public PasswordField createUserPassword_fld;
     public Button createNewUser_btn;
+    public Label error_lbl;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -33,7 +36,12 @@ public class CreateUserController implements Initializable {
     private void createUserAccount() {
         String username = createUserName_fld.getText();
         String password = createUserPassword_fld.getText();
-        Model.getInstance().getDatabaseDriver().createUser(username, password, LocalDate.now());
+        // If the user already exists, it is not possible to create user
+        if (!Model.getInstance().userExists(username, password)) {
+            Model.getInstance().getDatabaseDriver().createUser(username, password, LocalDate.now());
+        } else {
+            error_lbl.setText("The username already exists");
+        }
         emptyFields();
     }
 

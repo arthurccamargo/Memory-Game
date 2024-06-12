@@ -62,13 +62,24 @@ public class Model {
                 while (resultSet.next()) {
                     this.user.setName(resultSet.getString("user_name"));
                     String[] dateParts = resultSet.getString("entry_date").split("-");
-                    LocalDate date = LocalDate.of(Integer.parseInt(dateParts[0]), Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[2]));
+                    LocalDate date = LocalDate.of(Integer.parseInt(dateParts[0]), Integer.parseInt(dateParts[1]),
+                            Integer.parseInt(dateParts[2]));
                     this.user.setEntryDate(date);
                     this.userLoginSuccessFlag = true;
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public boolean userExists(String username, String password) {
+        ResultSet resultSet = databaseDriver.getUserData(username, password);
+        try {
+            return resultSet.isBeforeFirst();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }
