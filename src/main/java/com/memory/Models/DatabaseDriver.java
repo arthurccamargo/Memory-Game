@@ -57,6 +57,20 @@ public class DatabaseDriver {
         }
     }
 
+    public ResultSet getUserAttemptsData(int id) {
+        ResultSet resultSet;
+        try {
+            String sql = "SELECT * FROM points WHERE user_id= ? ";
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            resultSet = preparedStatement.executeQuery();
+            return resultSet;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public void createUser(String username, String password, LocalDate date) {
         Statement statement;
         try {

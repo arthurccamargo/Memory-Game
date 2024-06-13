@@ -8,11 +8,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
-    public Label hScoreEasy_lbl;
+    public Label hAttemptsEasy_lbl;
     public Label bTimeEasy_lbl;
-    public Label hScoreMedium_lbl;
+    public Label hAttemptsMedium_lbl;
     public Label bTimeMedium_lbl;
-    public Label hScoreHard_lbl;
+    public Label hAttemptsHard_lbl;
     public Label bTimeHard_lbl;
     public Label username_lbl;
 
@@ -24,5 +24,10 @@ public class HomeController implements Initializable {
         bTimeEasy_lbl.setText(Model.getInstance().getUser().getTimeEasyGame());
         bTimeMedium_lbl.setText("00:00");
         bTimeHard_lbl.setText("00:00");
+        // user game score data
+        Model.getInstance().userAttempts(Model.getInstance().getUser().getId());
+        hAttemptsEasy_lbl.setText(Model.getInstance().getUser().getAttemptsEasyGame());
+        hAttemptsMedium_lbl.setText("0");
+        hAttemptsHard_lbl.setText("0");
     }
 }

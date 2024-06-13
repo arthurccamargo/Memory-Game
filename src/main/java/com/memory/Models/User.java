@@ -9,6 +9,7 @@ public class User {
     private LocalDate entryDate;
     private int attempts;
     private String timeEasyGame;
+    private String attemptsEasyGame;
 
     public User() {
         this.name = "";
@@ -43,5 +44,11 @@ public class User {
 
     public void setTimeEasyGame(String timeEasyGame) {
         this.timeEasyGame = timeEasyGame;
+    }
+
+    public String getAttemptsEasyGame() {return attemptsEasyGame;}
+
+    public void setAttemptsEasyGame(String attemptsEasyGame) {
+        this.attemptsEasyGame = attemptsEasyGame;
     }
 }

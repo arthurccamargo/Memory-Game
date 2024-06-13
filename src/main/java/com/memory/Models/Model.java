@@ -96,4 +96,17 @@ public class Model {
             e.printStackTrace();
         }
     }
+
+    public void userAttempts(int id) {
+        ResultSet resultSet = databaseDriver.getUserAttemptsData(id);
+        try {
+            if (resultSet.isBeforeFirst()) {
+                this.user.setAttemptsEasyGame(resultSet.getString("easy_game"));
+            } else {
+                this.user.setAttemptsEasyGame("0");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
