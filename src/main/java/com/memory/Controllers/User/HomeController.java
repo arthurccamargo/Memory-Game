@@ -22,12 +22,12 @@ public class HomeController implements Initializable {
         // user game time data
         Model.getInstance().userTimes(Model.getInstance().getUser().getId());
         bTimeEasy_lbl.setText(Model.getInstance().getUser().getTimeEasyGame());
-        bTimeMedium_lbl.setText("00:00");
-        bTimeHard_lbl.setText("00:00");
+        bTimeMedium_lbl.setText("--:--");
+        bTimeHard_lbl.setText("--:--");
         // user game score data
         Model.getInstance().userAttempts(Model.getInstance().getUser().getId());
         hAttemptsEasy_lbl.setText(Model.getInstance().getUser().getAttemptsEasyGame());
-        hAttemptsMedium_lbl.setText("0");
-        hAttemptsHard_lbl.setText("0");
+        hAttemptsMedium_lbl.setText("-");
+        hAttemptsHard_lbl.setText("-");
     }
 }

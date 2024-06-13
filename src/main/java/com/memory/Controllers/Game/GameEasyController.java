@@ -157,6 +157,16 @@ public class GameEasyController implements Initializable {
     }
 
     private void winner() {
+        // get user time
+        String userTime = Model.getInstance().getUser().getTimeEasyGame();
+        if (Objects.equals(userTime, "--:--")) {
+            // set user time
+            Model.getInstance().getUser().setTimeEasyGame(time_lbl.getText());
+            // get user id
+            int id =Model.getInstance().getUser().getId();
+            // create user time data
+            Model.getInstance().getDatabaseDriver().createUserTime(id, time_lbl.getText());
+        }
         // stop time
         Model.getInstance().getGameTimer().stop();
         // show alert winner

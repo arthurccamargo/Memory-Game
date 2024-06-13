@@ -82,5 +82,17 @@ public class DatabaseDriver {
             e.printStackTrace();
         }
     }
+
+    public void createUserTime(int id, String time) {
+        Statement statement;
+        try {
+            statement = this.connection.createStatement();
+            statement.executeUpdate("INSERT INTO " +
+                    "game_time (user_id, easy_game)" +
+                    "VALUES ('"+id+"' , '"+time+"');");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
 

@@ -90,7 +90,7 @@ public class Model {
             if (resultSet.isBeforeFirst()) {
                 this.user.setTimeEasyGame(resultSet.getString("easy_game"));
             } else {
-                this.user.setTimeEasyGame("00:00");
+                this.user.setTimeEasyGame("--:--");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -103,7 +103,7 @@ public class Model {
             if (resultSet.isBeforeFirst()) {
                 this.user.setAttemptsEasyGame(resultSet.getString("easy_game"));
             } else {
-                this.user.setAttemptsEasyGame("0");
+                this.user.setAttemptsEasyGame("-");
             }
         } catch (Exception e) {
             e.printStackTrace();
