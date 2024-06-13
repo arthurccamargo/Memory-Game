@@ -23,7 +23,6 @@ public class DatabaseDriver {
             preparedStatement.setString(2, password);
             resultSet = preparedStatement.executeQuery();
             return resultSet;
-
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -38,7 +37,20 @@ public class DatabaseDriver {
             preparedStatement.setString(1, username);
             resultSet = preparedStatement.executeQuery();
             return resultSet;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
+    public ResultSet getUserTimeData(int id) {
+        ResultSet resultSet;
+        try {
+            String sql = "SELECT * FROM game_time WHERE user_id= ? ";
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            resultSet = preparedStatement.executeQuery();
+            return resultSet;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

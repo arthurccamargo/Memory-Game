@@ -3,10 +3,12 @@ package com.memory.Models;
 import java.time.LocalDate;
 
 public class User {
+    private int id;
     private String name;
     private String password;
     private LocalDate entryDate;
     private int attempts;
+    private String timeEasyGame;
 
     public User() {
         this.name = "";
@@ -29,5 +31,17 @@ public class User {
 
     public void setEntryDate(LocalDate entryDate) {
         this.entryDate = entryDate;
+    }
+
+    public int getId() {return id;}
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTimeEasyGame() {return timeEasyGame;}
+
+    public void setTimeEasyGame(String timeEasyGame) {
+        this.timeEasyGame = timeEasyGame;
     }
 }

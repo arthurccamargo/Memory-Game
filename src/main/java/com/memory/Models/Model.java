@@ -60,6 +60,7 @@ public class Model {
         try {
             if (resultSet.isBeforeFirst()) {
                 while (resultSet.next()) {
+                    this.user.setId(resultSet.getInt("id"));
                     this.user.setName(resultSet.getString("user_name"));
                     String[] dateParts = resultSet.getString("entry_date").split("-");
                     LocalDate date = LocalDate.of(Integer.parseInt(dateParts[0]), Integer.parseInt(dateParts[1]),
@@ -80,6 +81,19 @@ public class Model {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    public void userTimes(int id) {
+        ResultSet resultSet = databaseDriver.getUserTimeData(id);
+        try {
+            if (resultSet.isBeforeFirst()) {
+                this.user.setTimeEasyGame(resultSet.getString("easy_game"));
+            } else {
+                this.user.setTimeEasyGame("00:00");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

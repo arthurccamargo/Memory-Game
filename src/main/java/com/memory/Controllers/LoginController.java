@@ -35,7 +35,6 @@ public class LoginController implements Initializable {
             Model.getInstance().getViewFactory().showMenuView();
             // close stage the login window
             Model.getInstance().getViewFactory().closeStage(stage);
-            Model.getInstance().setUserLoginSuccessFlag(false);
         } else {
             error_lbl.setText("Invalid Username or Password");
         }

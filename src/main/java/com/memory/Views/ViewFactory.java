@@ -155,6 +155,7 @@ public class ViewFactory {
             resetGameEasy();
             closeStage(stage);
             showLoginView();
+            Model.getInstance().setUserLoginSuccessFlag(false);
         }
     }
 
