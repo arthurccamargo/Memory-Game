@@ -157,16 +157,7 @@ public class GameEasyController implements Initializable {
     }
 
     private void winner() {
-        // get user time
-        String userTime = Model.getInstance().getUser().getTimeEasyGame();
-        if (Objects.equals(userTime, "--:--")) {
-            // set user time
-            Model.getInstance().getUser().setTimeEasyGame(time_lbl.getText());
-            // get user id
-            int id =Model.getInstance().getUser().getId();
-            // create user time data
-            Model.getInstance().getDatabaseDriver().createUserTime(id, time_lbl.getText());
-        }
+        winnerTime();
         // stop time
         Model.getInstance().getGameTimer().stop();
         // show alert winner
@@ -181,6 +172,19 @@ public class GameEasyController implements Initializable {
         setTextSuccess();
         // starGame = 0 to start timer at the beginning of the game
         Model.getInstance().setStartGame(0);
+    }
+
+    private void winnerTime() {
+        // get user time
+        String userTime = Model.getInstance().getUser().getTimeEasyGame();
+        if (Objects.equals(userTime, "--:--")) {
+            // set user time
+            Model.getInstance().getUser().setTimeEasyGame(time_lbl.getText());
+            // get user id
+            int id =Model.getInstance().getUser().getId();
+            // create user time data
+            Model.getInstance().getDatabaseDriver().createUserTime(id, time_lbl.getText());
+        }
     }
 
     // get the position button

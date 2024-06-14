@@ -1,18 +1,21 @@
 package com.memory.Models;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 import java.time.LocalDate;
 
 public class User {
     private int id;
-    private String name;
+    private StringProperty name;
     private String password;
     private LocalDate entryDate;
     private int attempts;
     private String timeEasyGame;
     private String attemptsEasyGame;
 
-    public User() {
-        this.name = "";
+    public User(String name) {
+        this.name = new SimpleStringProperty(this, "name", name);
         this.password = "";
         this.attempts = 0;
         this.entryDate = null;
@@ -24,11 +27,7 @@ public class User {
         this.attempts = attempts;
     }
 
-    public String getName() {return name;}
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    public StringProperty getName() {return name;}
 
     public void setEntryDate(LocalDate entryDate) {
         this.entryDate = entryDate;
