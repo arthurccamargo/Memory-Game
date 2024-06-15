@@ -103,7 +103,7 @@ public class Model {
             if (resultSet.isBeforeFirst()) {
                 this.user.attemptsEasyGameProperty().set(resultSet.getInt("easy_game"));
             } else {
-                this.user.attemptsEasyGameProperty().set(100);
+                this.user.attemptsEasyGameProperty().set(0);
             }
         } catch (Exception e) {
             e.printStackTrace();

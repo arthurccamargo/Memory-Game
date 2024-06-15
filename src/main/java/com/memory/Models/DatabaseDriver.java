@@ -106,5 +106,15 @@ public class DatabaseDriver {
             e.printStackTrace();
         }
     }
+
+    public void updateUserAttempts(int id, int attempts) {
+        Statement statement;
+        try {
+            statement = this.connection.createStatement();
+            statement.executeUpdate("UPDATE points SET easy_game = '"+attempts+"'  WHERE user_id = '"+id+"'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
 

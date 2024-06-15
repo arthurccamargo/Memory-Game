@@ -191,11 +191,18 @@ public class GameEasyController implements Initializable {
     }
 
     private void winnerAttempts() {
-        if (attempts < Model.getInstance().getUser().attemptsEasyGameProperty().get()) {
+        // get user id
+        int id = Model.getInstance().getUser().getId();
+        if (Model.getInstance().getUser().attemptsEasyGameProperty().get() == 0) {
+            // set user attempts Easy Game
             Model.getInstance().getUser().attemptsEasyGameProperty().set(attempts);
-            int id = Model.getInstance().getUser().getId();
             // create user attempts data
             Model.getInstance().getDatabaseDriver().createUserAttempts(id, attempts);
+        } else if (attempts < Model.getInstance().getUser().attemptsEasyGameProperty().get()) {
+            // set user attempts Easy Game
+            Model.getInstance().getUser().attemptsEasyGameProperty().set(attempts);
+            // update user attempts data
+            Model.getInstance().getDatabaseDriver().updateUserAttempts(id, attempts);
         }
     }
 
