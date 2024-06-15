@@ -11,14 +11,15 @@ public class User {
     private String password;
     private LocalDate entryDate;
     private int attempts;
-    private String timeEasyGame;
+    private StringProperty timeEasyGame;
     private String attemptsEasyGame;
 
-    public User(String name) {
+    public User(String name, String timeEasyGame) {
         this.name = new SimpleStringProperty(this, "name", name);
         this.password = "";
         this.attempts = 0;
         this.entryDate = null;
+        this.timeEasyGame = new SimpleStringProperty(this, "timeEasyGame", timeEasyGame);
     }
 
     public int getAttempts() {return attempts;}
@@ -27,7 +28,7 @@ public class User {
         this.attempts = attempts;
     }
 
-    public StringProperty getName() {return name;}
+    public StringProperty nameProperty() {return name;}
 
     public void setEntryDate(LocalDate entryDate) {
         this.entryDate = entryDate;
@@ -39,11 +40,7 @@ public class User {
         this.id = id;
     }
 
-    public String getTimeEasyGame() {return timeEasyGame;}
-
-    public void setTimeEasyGame(String timeEasyGame) {
-        this.timeEasyGame = timeEasyGame;
-    }
+    public StringProperty timeEasyGameProperty() {return timeEasyGame;}
 
     public String getAttemptsEasyGame() {return attemptsEasyGame;}
 

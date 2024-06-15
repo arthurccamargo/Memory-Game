@@ -176,10 +176,10 @@ public class GameEasyController implements Initializable {
 
     private void winnerTime() {
         // get user time
-        String userTime = Model.getInstance().getUser().getTimeEasyGame();
+        String userTime = Model.getInstance().getUser().timeEasyGameProperty().get();
         if (Objects.equals(userTime, "--:--")) {
             // set user time
-            Model.getInstance().getUser().setTimeEasyGame(time_lbl.getText());
+            Model.getInstance().getUser().timeEasyGameProperty().set(time_lbl.getText());
             // get user id
             int id =Model.getInstance().getUser().getId();
             // create user time data

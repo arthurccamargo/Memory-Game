@@ -1,7 +1,6 @@
 package com.memory.Models;
 
 import com.memory.Views.ViewFactory;
-import javafx.beans.property.StringProperty;
 
 import java.sql.ResultSet;
 import java.time.LocalDate;
@@ -21,7 +20,7 @@ public class Model {
         this.board = new Board(4, 4);
         this.viewFactory = new ViewFactory();
         this.timer = new GameTimer();
-        this.user = new User("");
+        this.user = new User("", "");
         this.startGame = 0;
         this.databaseDriver = new DatabaseDriver();
         this.userLoginSuccessFlag = false;
@@ -62,7 +61,7 @@ public class Model {
             if (resultSet.isBeforeFirst()) {
                 while (resultSet.next()) {
                     this.user.setId(resultSet.getInt("id"));
-                    this.user.getName().set(resultSet.getString("user_name"));
+                    this.user.nameProperty().set(resultSet.getString("user_name"));
                     String[] dateParts = resultSet.getString("entry_date").split("-");
                     LocalDate date = LocalDate.of(Integer.parseInt(dateParts[0]), Integer.parseInt(dateParts[1]),
                             Integer.parseInt(dateParts[2]));
@@ -89,9 +88,9 @@ public class Model {
         ResultSet resultSet = databaseDriver.getUserTimeData(id);
         try {
             if (resultSet.isBeforeFirst()) {
-                this.user.setTimeEasyGame(resultSet.getString("easy_game"));
+                this.user.timeEasyGameProperty().set(resultSet.getString("easy_game"));
             } else {
-                this.user.setTimeEasyGame("--:--");
+                this.user.timeEasyGameProperty().set("--:--");
             }
         } catch (Exception e) {
             e.printStackTrace();

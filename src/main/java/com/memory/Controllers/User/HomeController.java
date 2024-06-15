@@ -1,7 +1,6 @@
 package com.memory.Controllers.User;
 
 import com.memory.Models.Model;
-import javafx.beans.binding.Binding;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -21,18 +20,14 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         bindData();
-        timesLabels();
         attemptsLabels();
     }
 
     private void bindData() {
-        username_lbl.textProperty().bind(Bindings.concat("Hi, ").concat(Model.getInstance().getUser().getName()));
-    }
-
-    private void timesLabels() {
+        username_lbl.textProperty().bind(Bindings.concat("Hi, ").concat(Model.getInstance().getUser().nameProperty()));
         // user game time data
         Model.getInstance().userTimes(Model.getInstance().getUser().getId());
-        bTimeEasy_lbl.setText(Model.getInstance().getUser().getTimeEasyGame());
+        bTimeEasy_lbl.textProperty().bind(Model.getInstance().getUser().timeEasyGameProperty());
         bTimeMedium_lbl.setText("--:--");
         bTimeHard_lbl.setText("--:--");
     }
