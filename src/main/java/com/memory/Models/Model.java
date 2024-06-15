@@ -20,7 +20,7 @@ public class Model {
         this.board = new Board(4, 4);
         this.viewFactory = new ViewFactory();
         this.timer = new GameTimer();
-        this.user = new User("", "");
+        this.user = new User("", "", "");
         this.startGame = 0;
         this.databaseDriver = new DatabaseDriver();
         this.userLoginSuccessFlag = false;
@@ -101,9 +101,9 @@ public class Model {
         ResultSet resultSet = databaseDriver.getUserAttemptsData(id);
         try {
             if (resultSet.isBeforeFirst()) {
-                this.user.setAttemptsEasyGame(resultSet.getString("easy_game"));
+                this.user.attemptsEasyGameProperty().set(resultSet.getString("easy_game"));
             } else {
-                this.user.setAttemptsEasyGame("-");
+                this.user.attemptsEasyGameProperty().set("-");
             }
         } catch (Exception e) {
             e.printStackTrace();

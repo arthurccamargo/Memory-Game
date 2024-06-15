@@ -35,7 +35,7 @@ public class HomeController implements Initializable {
     private void attemptsLabels() {
         // user game attempts data
         Model.getInstance().userAttempts(Model.getInstance().getUser().getId());
-        hAttemptsEasy_lbl.setText(Model.getInstance().getUser().getAttemptsEasyGame());
+        hAttemptsEasy_lbl.textProperty().bind(Model.getInstance().getUser().attemptsEasyGameProperty());
         hAttemptsMedium_lbl.setText("-");
         hAttemptsHard_lbl.setText("-");
     }
