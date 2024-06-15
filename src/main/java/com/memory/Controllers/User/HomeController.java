@@ -20,22 +20,19 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         bindData();
-        attemptsLabels();
     }
 
     private void bindData() {
+        // username data
         username_lbl.textProperty().bind(Bindings.concat("Hi, ").concat(Model.getInstance().getUser().nameProperty()));
         // user game time data
         Model.getInstance().userTimes(Model.getInstance().getUser().getId());
         bTimeEasy_lbl.textProperty().bind(Model.getInstance().getUser().timeEasyGameProperty());
         bTimeMedium_lbl.setText("--:--");
         bTimeHard_lbl.setText("--:--");
-    }
-
-    private void attemptsLabels() {
         // user game attempts data
         Model.getInstance().userAttempts(Model.getInstance().getUser().getId());
-        hAttemptsEasy_lbl.textProperty().bind(Model.getInstance().getUser().attemptsEasyGameProperty());
+        hAttemptsEasy_lbl.textProperty().bind(Model.getInstance().getUser().attemptsEasyGameProperty().asString());
         hAttemptsMedium_lbl.setText("-");
         hAttemptsHard_lbl.setText("-");
     }

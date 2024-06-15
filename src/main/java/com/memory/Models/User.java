@@ -1,5 +1,7 @@
 package com.memory.Models;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -12,15 +14,15 @@ public class User {
     private LocalDate entryDate;
     private int attempts;
     private StringProperty timeEasyGame;
-    private StringProperty attemptsEasyGame;
+    private IntegerProperty attemptsEasyGame;
 
-    public User(String name, String timeEasyGame, String attemptsEasyGame) {
+    public User(String name, String timeEasyGame, Integer attemptsEasyGame) {
         this.name = new SimpleStringProperty(this, "name", name);
         this.password = "";
         this.attempts = 0;
         this.entryDate = null;
         this.timeEasyGame = new SimpleStringProperty(this, "timeEasyGame", timeEasyGame);
-        this.attemptsEasyGame = new SimpleStringProperty(this, "attemptsEasyGame", attemptsEasyGame);
+        this.attemptsEasyGame = new SimpleIntegerProperty(this, "attemptsEasyGame", attemptsEasyGame);
     }
 
     public int getAttempts() {return attempts;}
@@ -43,5 +45,5 @@ public class User {
 
     public StringProperty timeEasyGameProperty() {return timeEasyGame;}
 
-    public StringProperty attemptsEasyGameProperty() {return attemptsEasyGame;}
+    public IntegerProperty attemptsEasyGameProperty() {return attemptsEasyGame;}
 }

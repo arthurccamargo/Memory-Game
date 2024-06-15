@@ -94,5 +94,17 @@ public class DatabaseDriver {
             e.printStackTrace();
         }
     }
+
+    public void createUserAttempts(int id, int attempts) {
+        Statement statement;
+        try {
+            statement = this.connection.createStatement();
+            statement.executeUpdate("INSERT INTO " +
+                    "points (user_id, easy_game)" +
+                    "VALUES ('"+id+"' , '"+attempts+"');");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
 

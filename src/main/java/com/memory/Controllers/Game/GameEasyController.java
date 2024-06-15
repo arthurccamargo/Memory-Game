@@ -157,6 +157,9 @@ public class GameEasyController implements Initializable {
     }
 
     private void winner() {
+        // winner attempts data
+        winnerAttempts();
+        // winner time data
         winnerTime();
         // stop time
         Model.getInstance().getGameTimer().stop();
@@ -184,6 +187,15 @@ public class GameEasyController implements Initializable {
             int id =Model.getInstance().getUser().getId();
             // create user time data
             Model.getInstance().getDatabaseDriver().createUserTime(id, time_lbl.getText());
+        }
+    }
+
+    private void winnerAttempts() {
+        if (attempts < Model.getInstance().getUser().attemptsEasyGameProperty().get()) {
+            Model.getInstance().getUser().attemptsEasyGameProperty().set(attempts);
+            int id = Model.getInstance().getUser().getId();
+            // create user attempts data
+            Model.getInstance().getDatabaseDriver().createUserAttempts(id, attempts);
         }
     }
 
