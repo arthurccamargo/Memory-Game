@@ -128,19 +128,20 @@ public class ViewFactory {
             // random pieces
             Model.getInstance().getBoard().randomPieces();
             // reset color
-            GridPane grid = (GridPane) gameEasyView.getChildren().get(1);
+            GridPane grid = (GridPane) gameEasyView.getChildren().get(2);
             for (int i = 0; i < (grid.getRowCount() * grid.getColumnCount()); i++) {
                 grid.getChildren().get(i).setStyle("-fx-background-color: gray");
                 grid.getChildren().get(i).setDisable(false);
             }
             // reset labels in GameEasy
-            Label time_lbl = (Label) gameEasyView.getChildren().get(3);
+            AnchorPane anchorPane = (AnchorPane) gameEasyView.getChildren().get(0);
+            Label time_lbl = (Label) anchorPane.getChildren().get(0);
             time_lbl.setText("00:00");
             Model.getInstance().getGameTimer().setMinutes(0);
             Model.getInstance().getGameTimer().setSeconds(0);
-            Label success_lbl = (Label) gameEasyView.getChildren().get(4);
+            Label success_lbl = (Label) anchorPane.getChildren().get(4);
             success_lbl.setText("0/" + (grid.getRowCount() * grid.getColumnCount())/2);
-            Label attempts_lbl = (Label) gameEasyView.getChildren().get(6);
+            Label attempts_lbl = (Label) anchorPane.getChildren().get(2);
             attempts_lbl.setText("0");
         }
     }
