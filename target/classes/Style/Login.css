@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');
+
+.login_container Text {
+    -fx-font-size: 2em;
+    -fx-font-family: "Titan One", sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-style: normal;
+    -fx-fill: #FFFFFF;
+}
+
+.login_container_title {
+    -fx-font-size: 7em;
+    -fx-font-family: "Titan One", sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-style: normal;
+    -fx-fill: #FFFFFF;
+}
+
+.login_container Button {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #000000;
+}
+
+.login_container Button:hover {
+    -fx-cursor: hand;
+}
+
+.error_lbl {
+    -fx-font-size: 1em;
+    -fx-text-fill: #FF0000;
+}

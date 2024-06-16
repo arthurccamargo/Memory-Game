@@ -6,6 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -17,12 +19,14 @@ public class LoginController implements Initializable {
     public Button login_btn;
     public Label error_lbl;
     public Button createUser_btn;
+    public ImageView imageView;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // if button is clicked
         login_btn.setOnAction(e -> onLogin());
         createUser_btn.setOnAction(e -> onCreateUser());
+        displayImage();
     }
 
     private void onLogin() {
@@ -49,5 +53,10 @@ public class LoginController implements Initializable {
         Model.getInstance().getViewFactory().closeStage(stage);
         // show create user window
         Model.getInstance().getViewFactory().showCreateUserView();
+    }
+
+    public void displayImage() {
+        Image image = new Image(getClass().getResourceAsStream("/Images/login.jpg"));
+        imageView.setImage(image);
     }
 }
