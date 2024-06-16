@@ -9,7 +9,7 @@
     -fx-font-family: "Titan One", sans-serif;
     -fx-font-weight: bold;
     -fx-font-style: normal;
-    -fx-text-fill: #FFFFFF;
+    -fx-text-fill: #04D804;
 }
 
 .home_container_lbl {
@@ -17,10 +17,19 @@
     -fx-text-fill: #FFFFFF;
 }
 
-.home_container Text {
+.home_container_mode {
     -fx-font-size: 2em;
     -fx-font-family: "Titan One", sans-serif;
     -fx-font-weight: bold;
     -fx-font-style: normal;
-    -fx-fill: #FFFFFF;
+    -fx-fill: #F41212;
 }
+
+.home_container_text {
+    -fx-font-size: 2em;
+    -fx-font-family: "Titan One", sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-style: normal;
+    -fx-fill: #BB04D8;
+}
+

@@ -1,12 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');
+
 .menu_container {
-    -fx-background-color: #d3d2d2;
-    -fx-spacing: 15;
-    -fx-padding: 0 0 10 10;
+    -fx-background-color: #000000;
+    -fx-spacing: 40;
+    -fx-padding: 10 0 0 10;
 }
 
 .menu_container Button {
-    -fx-background-color: #d3d2d2;
+    -fx-background-color: #000000;
     -fx-font-size: 2em;
-    -fx-text-fill: #000000;
-    -fx-font-family: "Calibri Light";
+    -fx-font-family: "Titan One", sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-style: normal;
+    -fx-text-fill: #BB04D8;
+}
+
+.menu_container Button:hover {
+    -fx-cursor: hand;
 }
