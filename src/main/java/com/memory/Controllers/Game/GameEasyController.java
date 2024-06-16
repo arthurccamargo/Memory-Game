@@ -157,12 +157,12 @@ public class GameEasyController implements Initializable {
     }
 
     private void winner() {
+        // stop time
+        Model.getInstance().getGameTimer().stop();
         // winner attempts data
         winnerAttempts();
         // winner time data
         winnerTime();
-        // stop time
-        Model.getInstance().getGameTimer().stop();
         // show alert winner
         Model.getInstance().getViewFactory().showAlertWinner();
         // reset labels
@@ -178,16 +178,47 @@ public class GameEasyController implements Initializable {
     }
 
     private void winnerTime() {
+        // get user id
+        int id =Model.getInstance().getUser().getId();
         // get user time
         String userTime = Model.getInstance().getUser().timeEasyGameProperty().get();
+        // if user time is empty
         if (Objects.equals(userTime, "--:--")) {
+            System.out.println("Times is empty");
             // set user time
             Model.getInstance().getUser().timeEasyGameProperty().set(time_lbl.getText());
-            // get user id
-            int id =Model.getInstance().getUser().getId();
-            // create user time data
+            // create user times data
             Model.getInstance().getDatabaseDriver().createUserTime(id, time_lbl.getText());
+        } else if (comparisonTimes()) {
+            // set user time
+            Model.getInstance().getUser().timeEasyGameProperty().set(time_lbl.getText());
+            // update user times data
+            Model.getInstance().getDatabaseDriver().updateUserTime(id, time_lbl.getText());
         }
+    }
+
+    // return true to update user times
+    private boolean comparisonTimes() {
+        String gameTime = time_lbl.getText();
+        String userTime = Model.getInstance().getUser().timeEasyGameProperty().get();
+        int minGame = gameTime.charAt(1);
+        int minUser = userTime.charAt(1);
+        if(minGame > minUser) {
+            return false;
+        } else if (minGame == minUser) {
+            int segGame1 = gameTime.charAt(3);
+            int segUser1 = userTime.charAt(3);
+            if (segGame1 > segUser1) {
+                return false;
+            } else if (segGame1 == segUser1) {
+                int segGame2 = gameTime.charAt(4);
+                int segUser2 = userTime.charAt(4);
+                if (segGame2 >= segUser2) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     private void winnerAttempts() {

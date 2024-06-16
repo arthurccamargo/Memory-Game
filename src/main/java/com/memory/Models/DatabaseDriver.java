@@ -116,5 +116,15 @@ public class DatabaseDriver {
             e.printStackTrace();
         }
     }
+
+    public void updateUserTime(int id, String time) {
+        Statement statement;
+        try {
+            statement = this.connection.createStatement();
+            statement.executeUpdate("UPDATE game_time SET easy_game = '"+time+"'  WHERE user_id = '"+id+"'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
