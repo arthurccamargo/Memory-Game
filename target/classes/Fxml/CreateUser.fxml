@@ -4,16 +4,23 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.memory.Controllers.CreateUserController">
-   <Text layoutX="369.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create User" />
-   <Text layoutX="258.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Name" />
-   <TextField fx:id="createUserName_fld" layoutX="258.0" layoutY="192.0" prefHeight="26.0" prefWidth="281.0" />
-   <Text layoutX="259.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Password" wrappingWidth="77.021484375" />
-   <PasswordField fx:id="createUserPassword_fld" layoutX="258.0" layoutY="287.0" prefHeight="26.0" prefWidth="281.0" />
-   <Button fx:id="createNewUser_btn" layoutX="316.0" layoutY="369.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="166.0" text="Create New User" />
-   <Label fx:id="error_lbl" layoutX="259.0" layoutY="328.0" prefHeight="18.0" prefWidth="282.0" />
+<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="login_container" stylesheets="@../Style/CreateUser.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.memory.Controllers.CreateUserController">
+   <ImageView fx:id="imageView" fitHeight="522.0" fitWidth="584.0" layoutX="131.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.6" scaleY="1.17">
+      <image>
+         <Image url="@../Images/createUser.jpg" />
+      </image>
+   </ImageView>
+   <Text layoutX="149.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login_container_title" text="Create User" />
+   <Text layoutX="253.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Name" />
+   <TextField fx:id="createUserName_fld" layoutX="252.0" layoutY="234.0" prefHeight="26.0" prefWidth="281.0" />
+   <Text layoutX="252.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Password" wrappingWidth="210.62152099609375" />
+   <PasswordField fx:id="createUserPassword_fld" layoutX="252.0" layoutY="353.0" prefHeight="26.0" prefWidth="281.0" />
+   <Button fx:id="createNewUser_btn" layoutX="309.0" layoutY="424.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="166.0" text="Create New User" />
+   <Label fx:id="error_lbl" layoutX="317.0" layoutY="472.0" prefHeight="27.0" prefWidth="166.0" styleClass="error_lbl" />
    <Button fx:id="back_btn" layoutX="31.0" layoutY="533.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="59.0" text="Back" />
 </AnchorPane>
