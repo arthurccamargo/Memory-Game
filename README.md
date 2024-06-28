@@ -15,14 +15,14 @@ Para mais informações desse padrão de projeto : https://www.devmedia.com.br/p
 
 * DB Browser for SQLite : https://sqlitebrowser.org/dl/ (para visualização do banco de dados)
 
-Para compilar pode ser utilizado o editor de sua preferência, a aplicação foi feito através do Intellij
+* Para compilar pode ser utilizado o editor de sua preferência, a aplicação foi feita através do Intellij
 
 ### Dentro da aplicação:
-Se não criar um usuário no jogo pode entrar com o meu usuário
+**Se não criar um usuário no jogo pode entrar com o meu usuário**
 
-Use o username: arthurccamargo 
+* Use o username: arthurccamargo 
 
-Use a password: 123456
+* Use a password: 123456
 
 ## Tecnologias utilizadas
 * Java
@@ -31,11 +31,11 @@ Use a password: 123456
 * SQLite
 
 ## Imagens
-Se não criar um usuário pode entrar com o meu usuário
+**Se não criar um usuário pode entrar com o meu usuário**
 
-Use o username: arthurccamargo 
+* Use o username: arthurccamargo 
 
-Use a password: 123456
+* Use a password: 123456
 
 ![Login](https://github.com/arthurccamargo/Memory-Game/assets/118135851/1056da81-1a0f-4819-8496-764748903d71)
 
